@@ -18,7 +18,8 @@ interface URLRecord {
     clickCount: number;
     analytics: { 
         ip: any; 
-        timestamp: Date 
+        timestamp: Date;
+        useragent: string;
     }[];
 }
 
@@ -79,7 +80,7 @@ app.get('/:shortenedId', async (req: Request, res: Response) : Promise<any> => {
     }
 
     record.clickCount += 1;
-    record.analytics.push({ ip: req.ip, timestamp: new Date() });
+    record.analytics.push({ ip: req.ip, timestamp: new Date(), useragent: String( req.headers['user-agent'] ) });
 
     res.redirect(record.originalUrl);
 });

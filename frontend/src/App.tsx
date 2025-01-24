@@ -51,6 +51,7 @@ function App() {
       const response = await axios.get(
         `${API_BASE_URL}/analytics/${analyticsId}`
       );
+      console.log(response);
       setAnalytics(response.data);
     } catch (error) {
       showNotification({
